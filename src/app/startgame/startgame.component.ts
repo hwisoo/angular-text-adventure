@@ -15,6 +15,7 @@ export class StartgameComponent implements OnInit {
 
   name: string;
   type: string;
+  health: number;
   currentSceneId = null;
 
   currentScene;
@@ -25,6 +26,7 @@ export class StartgameComponent implements OnInit {
     this.currentScene = SCENES[this.currentSceneId];
     this.name = this.charService.getName()
     this.type = this.charService.getType()
+    this.health = this.charService.getHealth()
 
   }
 
@@ -32,6 +34,7 @@ export class StartgameComponent implements OnInit {
   setScene(num) {
     this.currentSceneId = num;
     this.currentScene = SCENES[this.currentSceneId];
+    this.health -= this.currentScene.damage;
 
   }
   // setVal(scene, choice) {

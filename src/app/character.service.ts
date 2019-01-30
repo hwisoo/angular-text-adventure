@@ -26,6 +26,8 @@ export class CharacterService {
   getType() {
     return this.character.type;
   }
-
+  getHealth() {
+    return this.character.health;
+  }
 
 }

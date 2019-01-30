@@ -1,12 +1,44 @@
-<h3>Welcome {{name}}, Your weapon: {{type}}</h3>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img *ngIf="name=='Rick'" src="https://vignette.wikia.nocookie.net/walkingdead/images/5/53/Season_nine_rick_grimes.png/revision/latest?cb=20181029175100"
+        alt="Rick">
+      <img *ngIf="name=='Michonne'" src="https://i.pinimg.com/originals/be/31/40/be31405c70efceabf328899470f37b38.jpg"
+        alt="">
+      <img *ngIf="name=='Daryl'" src="https://images.amcnetworks.com/amc.com/wp-content/uploads/2011/09/TWD9_FLARE_Norman_0037_RT-700x1000.jpg"
+        alt="Daryl">
+      <a class="navbar-brand">Name: {{name}}</a>
+      <a class="navbar-brand">Weapon: {{type}}</a>
+      <a class="navbar-brand">Health: {{health}}</a>
+    </div>
+  </div>
+</nav>
+
+<h3 *ngIf="currentSceneId==0">Welcome {{name}}, Your weapon: {{type}}</h3>
 <div class="game">
   <div *ngIf="currentScene">
     <h3>{{currentScene.l}}</h3>
     <p>{{currentScene.c}}</p>
+    <div *ngIf="health>0">
+      <div *ngFor="let option of currentScene.options">
+        <button *ngIf="option==='Attack' && type" (click)="setScene(currentScene.choice[currentScene.options.indexOf(option)])"
+          class="btn btn-primary">{{option}} with {{type}}</button>
+        <button *ngIf="option!='Attack'" (click)="setScene(currentScene.choice[currentScene.options.indexOf(option)])"
+          class="btn btn-primary">{{option}}</button>
+        <!-- <button (click)="setScene(currentScene.c2v)" class="btn btn-primary">{{currentScene.c2}}</button><br>
+          <button (click)="setScene(currentScene.c3v)" class="btn btn-primary">{{currentScene.c3}}</button><br> -->
+      </div>
+    </div>
 
-    <button (click)="setScene(currentScene.c1v)" class="btn btn-primary">{{currentScene.c1}}</button><br>
-    <button (click)="setScene(currentScene.c2v)" class="btn btn-primary">{{currentScene.c2}}</button><br>
-    <button (click)="setScene(currentScene.c3v)" class="btn btn-primary">{{currentScene.c3}}</button><br>
-
+    <div *ngIf="health===0">
+      <img *ngIf="name=='Rick'" src="https://nypdecider.files.wordpress.com/2018/03/red-eyed-rick-walking-dead.jpg?quality=90&strip=all&w=646&h=431&crop=1"
+        alt="Rick">
+      <img *ngIf="name=='Michonne'" src="data:image/jpeg;base64,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"
+        alt="">
+      <img *ngIf="name=='Daryl'" src="https://d.ibtimes.co.uk/en/full/1388739/walking-dead-season-5.jpg?w=720&e=fc763df1ed2b350a4a5addccfb1aed3d"
+        alt="Daryl">
+      <h3>You died.</h3>
+      <button routerLink="" class="btn btn-primary">Start Over</button>
+    </div>
   </div>
 </div>

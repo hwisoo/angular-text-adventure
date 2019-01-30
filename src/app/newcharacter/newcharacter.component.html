@@ -1,7 +1,11 @@
 <div>
 
   <label for="name">Enter character name: </label>
-  <input #charName type="text">
+  <select #charType>
+      <option value="Rick">Rick</option>
+      <option value="Michonne">Michonne</option>
+      <option value="Daryl">Daryl</option>
+    </select>
   <br>
   <label for="weapon">Choose your weapon: </label>
   <select #weaponType>
@@ -10,5 +14,5 @@
     <option value="Machete">Machete</option>
   </select>
   <br>
-  <button (click)="createChar(charName.value, weaponType.value)" routerLink="../startgame" class="btn btn-primary">Create</button>
+  <button (click)="createChar(charType.value, weaponType.value)" routerLink="../startgame" class="btn btn-primary">Create</button>
 </div>
