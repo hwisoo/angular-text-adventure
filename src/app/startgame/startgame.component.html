@@ -1,0 +1,12 @@
+<h3>Welcome {{name}}, Your weapon: {{type}}</h3>
+<div class="game">
+  <div *ngIf="currentScene">
+    <h3>{{currentScene.l}}</h3>
+    <p>{{currentScene.c}}</p>
+
+    <button (click)="setScene(currentScene.c1v)" class="btn btn-primary">{{currentScene.c1}}</button><br>
+    <button (click)="setScene(currentScene.c2v)" class="btn btn-primary">{{currentScene.c2}}</button><br>
+    <button (click)="setScene(currentScene.c3v)" class="btn btn-primary">{{currentScene.c3}}</button><br>
+
+  </div>
+</div>
